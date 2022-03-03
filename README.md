@@ -1,6 +1,14 @@
-# money_manager
+# MONEY MANAGER / PERA MANAGER (On Going Development)
 
-A new Flutter project.
+Money manager made with flutter for Philippines.
+
+Functions:
+1. Add expenses and income by categories
+2. Export to pdf or xls for selected transactions
+3. Add utang with notification
+4. Automatic transactions (ex. salary as recurrent transaction)
+5. Bills reminder
+6. User friendly reporting
 
 ## Getting Started
 
