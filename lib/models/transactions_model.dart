@@ -152,6 +152,7 @@ class TransactionsModel with ChangeNotifier {
     return [...seen];
   }
 
+  void test() {}
   List<txItem.TransactionItem> transactionsByDate(DateTime dateTime) {
     return [
       ...transactionList.where((element) => dateTime == element.transactionDate)
