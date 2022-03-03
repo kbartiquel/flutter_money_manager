@@ -10,6 +10,12 @@ Functions:
 5. Bills reminder
 6. User friendly reporting
 
+
+## Screenshots:
+
+![ScreenShot](https://raw.github.com/kbartiquel/flutter_money_manager/main/screens/screen.png)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
