@@ -32,7 +32,10 @@ class FilterDialog extends StatelessWidget {
         children: <Widget>[
           Container(
             child: const Center(
-              child: Text('Filter Date'),
+              child: Text(
+                'Filter Date',
+                style: TextStyle(color: Const.textColor2),
+              ),
             ),
             decoration: const BoxDecoration(
               shape: BoxShape.rectangle,
@@ -43,64 +46,147 @@ class FilterDialog extends StatelessWidget {
             width: double.infinity,
             height: 30,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: (() {}),
-                  child: Card(
-                    child: SizedBox(
-                      width: 120,
+          Container(
+            decoration: const BoxDecoration(
+                border: Border.symmetric(
+                    horizontal: BorderSide(width: 0, color: Colors.grey))),
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {},
                       child: Column(
-                        children: const [Icon(Icons.add), Text('All Time')],
+                        children: const [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.timelapse),
+                          Text('All Time'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: (() {}),
-                  child: Card(
-                    child: SizedBox(
-                      width: 120,
+                  const VerticalDivider(
+                    color: Colors.grey,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
                       child: Column(
-                        children: const [Icon(Icons.add), Text('Daily')],
+                        children: const [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.looks_one),
+                          Text('Today'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ),
+          ),
+          Container(
+            decoration: const BoxDecoration(
+                border: Border.symmetric(
+                    horizontal: BorderSide(width: 0, color: Colors.grey))),
+            padding: const EdgeInsets.only(
+              right: 8,
+              left: 8,
+            ),
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      child: Column(
+                        children: const [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.calendar_view_day_outlined),
+                          Text('Select Day'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const VerticalDivider(
+                    color: Colors.grey,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      child: Column(
+                        children: const [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.calendar_view_week),
+                          Text('Weekly'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: (() {}),
-                  child: Card(
-                    child: SizedBox(
-                      width: 120,
+            padding: const EdgeInsets.only(right: 8, left: 8),
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
                       child: Column(
-                        children: const [Icon(Icons.add), Text('Weekly')],
+                        children: const [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.calendar_view_month),
+                          Text('Monthly'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: (() {}),
-                  child: Card(
-                    child: SizedBox(
-                      width: 120,
+                  const VerticalDivider(color: Colors.grey),
+                  Expanded(
+                    child: GestureDetector(
                       child: Column(
-                        children: const [Icon(Icons.add), Text('Monthly')],
+                        children: const [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(Icons.calendar_today),
+                          Text('Yearly'),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
