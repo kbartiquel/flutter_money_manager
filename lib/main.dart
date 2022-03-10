@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:money_manager/models/transactions_model.dart';
 import 'package:money_manager/screens/choose_categories_screen.dart';
@@ -10,7 +12,6 @@ import 'package:money_manager/screens/categories_screen.dart';
 import 'package:money_manager/screens/transactions_screen.dart';
 import 'package:money_manager/screens/utang_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'models/categories_model.dart';
 
 void main() => runApp(MyApp());

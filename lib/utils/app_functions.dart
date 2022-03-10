@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'const.dart';
 
-class Functions {
+class AppFunctions {
   DateTime formatDate(DateTime dateTime) {
     return DateTime.parse(DateFormat("yyyy-MM-dd").format(dateTime).toString());
   }
@@ -13,6 +13,14 @@ class Functions {
 
   String formatDateString(DateTime dateTime) {
     return DateFormat("yyyy-MM-dd").format(dateTime).toString();
+  }
+
+  String formatDateYmdString(DateTime dateTime) {
+    return DateFormat.yMd().format(dateTime).toString();
+  }
+
+  String dateToMonthYear(DateTime dateTime) {
+    return DateFormat('MMMM yyyy').format(dateTime).toString();
   }
 
   Widget amountWidget(double amount, double fontSize) {

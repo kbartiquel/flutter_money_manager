@@ -6,7 +6,7 @@ import 'package:money_manager/models/transaction_item_model.dart' as txItem;
 import 'package:money_manager/utils/database.dart';
 import 'package:money_manager/utils/enum.dart';
 
-import '../utils/functions.dart' as func;
+import '../utils/app_functions.dart' as func;
 
 class TransactionsModel with ChangeNotifier {
   List<txItem.TransactionItem> transactionList = [
@@ -98,7 +98,8 @@ class TransactionsModel with ChangeNotifier {
       required double amount,
       required PaymentMode paymentMode}) async {
     addTransactionDB(
-            transactionDate: func.Functions().formatDateString(transactionDate),
+            transactionDate:
+                func.AppFunctions().formatDateString(transactionDate),
             categoryId: categoryId,
             categoryname: categoryname,
             notes: notes,
@@ -129,8 +130,8 @@ class TransactionsModel with ChangeNotifier {
     for (var element in l) {
       transactionListTemp.add(txItem.TransactionItem(
           transactionId: element['transactionId'],
-          transactionDate:
-              func.Functions().formatDateFromString(element['transactionDate']),
+          transactionDate: func.AppFunctions()
+              .formatDateFromString(element['transactionDate']),
           categoryId: element['categoryId'],
           cateGoryname: element['categoryName'],
           notes: element['notes'],

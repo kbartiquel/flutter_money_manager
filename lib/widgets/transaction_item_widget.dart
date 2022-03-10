@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../models/transaction_item_model.dart' as txItem;
 import '../models/transactions_model.dart';
 import '../utils/const.dart';
-import '../utils/Functions.dart' as func;
+import '../utils/app_functions.dart' as func;
 
 class TransactionItemWidget extends StatefulWidget {
   DateTime transactionDate;
@@ -58,7 +58,7 @@ class _TransactionItemState extends State<TransactionItemWidget> {
                   ),
                 ],
               ),
-              func.Functions().amountWidget(
+              func.AppFunctions().amountWidget(
                   transactionItem.amount, Const.transactionFontSizeSubTitle),
             ],
           ),
@@ -85,7 +85,7 @@ class _TransactionItemState extends State<TransactionItemWidget> {
                   'Total: ',
                   style: TextStyle(fontSize: Const.listSubTitleFontSize),
                 ),
-                func.Functions()
+                func.AppFunctions()
                     .amountWidget(totalAmount, Const.listSubTitleFontSize),
               ]),
               trailing: IconButton(

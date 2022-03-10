@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:money_manager/models/transactions_model.dart';
 import 'package:money_manager/screens/choose_categories_screen.dart';
 import 'package:money_manager/utils/const.dart';
+import 'package:money_manager/utils/enum.dart';
 import 'package:money_manager/widgets/transaction_item_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../models/transaction_item_model.dart';
-import '../utils/functions.dart' as func;
+import '../utils/app_functions.dart' as func;
 import '../widgets/filter_dialog.dart';
 
 class Transactions_Screen extends StatefulWidget {
@@ -17,7 +19,59 @@ class Transactions_Screen extends StatefulWidget {
 }
 
 class _TransactionsState extends State<Transactions_Screen> {
+  bool isAlltime = false;
+  bool isToday = false;
+  bool isMonthly = true;
+  bool isYearly = false;
+  bool isSelectDay = false;
+  bool isWeekly = false;
+
   List<TransactionItem> list = [];
+  void resetFilterValue() {
+    isAlltime = false;
+    isToday = false;
+    isMonthly = false;
+    isYearly = false;
+    isSelectDay = false;
+    isWeekly = false;
+  }
+
+  void setFilter(DateFilter filter) {
+    setState(() {
+      resetFilterValue();
+      switch (filter) {
+        case DateFilter.alltime:
+          isAlltime = true;
+          break;
+        case DateFilter.today:
+          isToday = true;
+          break;
+        case DateFilter.selectday:
+          isSelectDay = true;
+          break;
+        case DateFilter.weekly:
+          isWeekly = true;
+          break;
+        case DateFilter.monthly:
+          isMonthly = true;
+          break;
+        case DateFilter.yearly:
+          isYearly = true;
+          break;
+        default:
+      }
+    });
+  }
+
+  String showFilterDate() {
+    if (isAlltime) return 'All Time';
+    if (isToday) return 'Today';
+    if (isSelectDay) return 'Selected Date Here';
+    if (isWeekly) return 'Weekly Range';
+    if (isMonthly) return func.AppFunctions().dateToMonthYear(DateTime.now());
+    if (isYearly) return DateFormat('yyyy').format(DateTime.now()).toString();
+    return '';
+  }
 
   getList() async {
     var t = Provider.of<TransactionsModel>(context, listen: false);
@@ -32,6 +86,10 @@ class _TransactionsState extends State<Transactions_Screen> {
     super.initState();
   }
 
+  void onDialogClick(DateFilter filter) {
+    setFilter(filter);
+  }
+
   //?filter dialog
   void showCustomDialog(BuildContext context) {
     showGeneralDialog(
@@ -41,7 +99,9 @@ class _TransactionsState extends State<Transactions_Screen> {
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: const Duration(milliseconds: 200),
       pageBuilder: (_, __, ___) {
-        return const FilterDialog();
+        return FilterDialog(
+          onDialogClick,
+        );
       },
       transitionBuilder: (_, anim, __, child) {
         Tween<Offset> tween;
@@ -62,14 +122,10 @@ class _TransactionsState extends State<Transactions_Screen> {
     );
   }
 
-  void showFilterDialog() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const FilterDialog()));
-  }
-
   @override
   Widget build(BuildContext context) {
     var transactionsModelP = Provider.of<TransactionsModel>(context);
+    print(func.AppFunctions().dateToMonthYear(DateTime.now()));
     //?date sort
     Widget dateSort = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -78,11 +134,11 @@ class _TransactionsState extends State<Transactions_Screen> {
         const Spacer(),
         const IconButton(onPressed: null, icon: Icon(Icons.navigate_before)),
         const Spacer(),
-        const TextButton(
+        TextButton(
             onPressed: null,
             child: Text(
-              'Feb 24,2022',
-              style: TextStyle(color: Const.textColor2),
+              showFilterDate(),
+              style: const TextStyle(color: Const.textColor2),
             )),
         const Spacer(),
         const IconButton(onPressed: null, icon: Icon(Icons.navigate_next)),
@@ -140,8 +196,9 @@ class _TransactionsState extends State<Transactions_Screen> {
                                 child: Padding(
                                   padding:
                                       const EdgeInsets.only(left: 3, right: 3),
-                                  child: func.Functions().amountWidgetSummary(
-                                      transactionsModelP.allTotalExpenses()),
+                                  child: func.AppFunctions()
+                                      .amountWidgetSummary(transactionsModelP
+                                          .allTotalExpenses()),
                                 ))
                           ],
                         ),
@@ -172,8 +229,9 @@ class _TransactionsState extends State<Transactions_Screen> {
                                 child: Padding(
                                   padding:
                                       const EdgeInsets.only(left: 3, right: 3),
-                                  child: func.Functions().amountWidgetSummary(
-                                      transactionsModelP.allTotalIncome()),
+                                  child: func.AppFunctions()
+                                      .amountWidgetSummary(
+                                          transactionsModelP.allTotalIncome()),
                                 ))
                           ],
                         ),
@@ -202,8 +260,9 @@ class _TransactionsState extends State<Transactions_Screen> {
                                 child: Padding(
                                   padding:
                                       const EdgeInsets.only(left: 3, right: 3),
-                                  child: func.Functions().amountWidgetSummary(
-                                      transactionsModelP.allNetAmount()),
+                                  child: func.AppFunctions()
+                                      .amountWidgetSummary(
+                                          transactionsModelP.allNetAmount()),
                                 ))
                           ],
                         ),

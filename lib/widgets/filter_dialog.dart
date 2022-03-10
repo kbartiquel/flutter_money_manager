@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:money_manager/utils/enum.dart';
 
 import '../utils/const.dart';
 
 class FilterDialog extends StatelessWidget {
-  const FilterDialog({Key? key}) : super(key: key);
+  Function onClick;
+
+  FilterDialog(this.onClick);
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +59,11 @@ class FilterDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {},
+                    child: InkWell(
+                      onTap: () {
+                        onClick(DateFilter.alltime);
+                        Navigator.pop(context);
+                      },
                       child: Column(
                         children: const [
                           SizedBox(
@@ -76,7 +82,11 @@ class FilterDialog extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   Expanded(
-                    child: GestureDetector(
+                    child: InkWell(
+                      onTap: () {
+                        onClick(DateFilter.today);
+                        Navigator.pop(context);
+                      },
                       child: Column(
                         children: const [
                           SizedBox(
@@ -108,7 +118,11 @@ class FilterDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: GestureDetector(
+                    child: InkWell(
+                      onTap: () {
+                        onClick(DateFilter.selectday);
+                        Navigator.pop(context);
+                      },
                       child: Column(
                         children: const [
                           SizedBox(
@@ -127,7 +141,11 @@ class FilterDialog extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   Expanded(
-                    child: GestureDetector(
+                    child: InkWell(
+                      onTap: () {
+                        onClick(DateFilter.weekly);
+                        Navigator.pop(context);
+                      },
                       child: Column(
                         children: const [
                           SizedBox(
@@ -153,7 +171,11 @@ class FilterDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: GestureDetector(
+                    child: InkWell(
+                      onTap: () {
+                        onClick(DateFilter.monthly);
+                        Navigator.pop(context);
+                      },
                       child: Column(
                         children: const [
                           SizedBox(
@@ -170,18 +192,24 @@ class FilterDialog extends StatelessWidget {
                   ),
                   const VerticalDivider(color: Colors.grey),
                   Expanded(
-                    child: GestureDetector(
-                      child: Column(
-                        children: const [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(Icons.calendar_today),
-                          Text('Yearly'),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ],
+                    child: InkWell(
+                      onTap: () {
+                        onClick(DateFilter.yearly);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        child: Column(
+                          children: const [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Icon(Icons.calendar_today),
+                            Text('Yearly'),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

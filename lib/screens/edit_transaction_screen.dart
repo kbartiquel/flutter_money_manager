@@ -4,7 +4,7 @@ import 'package:money_manager/models/transactions_model.dart';
 import 'package:money_manager/utils/arguments.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:money_manager/utils/enum.dart';
-import 'package:money_manager/utils/functions.dart';
+import 'package:money_manager/utils/app_functions.dart';
 import '../utils/const.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +62,7 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
 
         if (double.tryParse(amountController.text) != null) {
           transactionProvider.addTransaction(
-              transactionDate: Functions().formatDate(selectedDate!),
+              transactionDate: AppFunctions().formatDate(selectedDate!),
               categoryId: categoryId,
               categoryname: categoryName,
               notes: note,
