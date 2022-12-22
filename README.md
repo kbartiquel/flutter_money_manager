@@ -1,4 +1,4 @@
-# MONEY MANAGER n Flutter
+# MONEY MANAGER in Flutter
 
 Functions:
 1. Add expenses and income by categories
