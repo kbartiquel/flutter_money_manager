@@ -1,6 +1,4 @@
-# MONEY MANAGER / PERA MANAGER (On Going Development)
-
-Money manager made with flutter for Philippines.
+# MONEY MANAGER n Flutter
 
 Functions:
 1. Add expenses and income by categories
